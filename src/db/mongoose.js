@@ -11,6 +11,6 @@ mongoose
     console.log('Database connected')
   })
   .catch(err => {
-    console.log('Databse cobnnection error', err)
+    console.log('Databse connection error', err)
     process.exit()
   })

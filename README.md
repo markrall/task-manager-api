@@ -1,7 +1,15 @@
-# Task Manager API
+# Yet another Task Manager
+
+## About Task Manager API
+
+Yep, the world definitely doesn't need another one and there are so many developer portfolios out there with a similar example. But...
+
+The task manager is the quintessential archetype for the genre.
 
 ## Todo
 
+- Implement TypeScript
+- Implement unit test suite
 - Add due date attribute to tasks
 - Add filter (by date, incl today) and sort to due date attribute
 - Add priority attribute to tasks

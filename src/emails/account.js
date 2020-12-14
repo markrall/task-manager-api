@@ -3,7 +3,7 @@ const SG_API_KEY = process.env.SG
 
 sgMail.setApiKey(SG_API_KEY)
 
-const sendWelcomeEmail = (email, name) => {
+const sendWelcomeEmail = async (email, name) => {
   const msg = {
     to: email,
     from: 'sendgrid@codeinfront.com',
@@ -20,19 +20,10 @@ const sendWelcomeEmail = (email, name) => {
       Regards,
       TMAP Team`,
   }
-  sgMail.send(msg).then(
-    () => {},
-    error => {
-      console.error(error)
-
-      if (error.response) {
-        console.error(error.response.body)
-      }
-    }
-  )
+  await sgMail.send(msg)
 }
 
-const sendCancellationEmail = (email, name) => {
+const sendCancellationEmail = async (email, name) => {
   const msg = {
     to: email,
     from: 'sendgrid@codeinfront.com',
@@ -46,16 +37,7 @@ const sendCancellationEmail = (email, name) => {
       TMAPP Team
       `,
   }
-  sgMail.send(msg).then(
-    () => {},
-    error => {
-      console.error(error)
-
-      if (error.response) {
-        console.error(error.response.body)
-      }
-    }
-  )
+  await sgMail.send(msg)
 }
 
 module.exports = {
