@@ -1,19 +1,20 @@
-const express = require('express')
+import express, { Request, Response, NextFunction } from 'express'
 const controller = require('../controllers/user.controller')
 const auth = require('../middleware/auth')
-const router = new express.Router()
+const router = express.Router()
 const multer = require('multer')
 
 const upload = multer({
   limits: {
     fileSize: 1000000,
   },
-  fileFilter(_req, file, cb) {
+  fileFilter(_req: Request, file: { originalname: string }, cb: (arg0: Error | undefined, arg1: boolean | undefined) => void) {
     if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
       cb(
         new Error(
           'Please upload image files of <1MB in JPG, JPEG or PNG format'
-        )
+        ),
+        undefined
       )
     }
     cb(undefined, true)
@@ -39,7 +40,7 @@ router.post(
   auth,
   upload.single('avatar'),
   controller.uploadAvatar,
-  (error, _req, res, _next) => {
+  (error: { message: any }, _req: Request, res: Response, _next: NextFunction) => {
     res.status(400).send({ error: error.message })
   }
 )
@@ -48,4 +49,4 @@ router.get('/users/:id/avatar', controller.findUserAvatar)
 
 router.delete('/users/me/avatar', auth, controller.deleteAvatar)
 
-module.exports = router
+export default router

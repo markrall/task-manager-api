@@ -1,12 +1,11 @@
-const express = require('express')
-require('./db/mongoose')
-const bodyParser = require('body-parser')
+import express from 'express'
+import './db/mongoose'
+import bodyParser from 'body-parser'
 // const cors = require('cors')
 // const logger = require('morgan')
 
 // const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users')
-const tasksRouter = require('./routes/tasks')
+import {usersRouter, tasksRouter} from './routes/'
 
 const app = express()
 

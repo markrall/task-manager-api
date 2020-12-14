@@ -13,4 +13,4 @@ router.patch('/tasks/:id', auth, controller.updateTask)
 
 router.delete('/tasks/:id', auth, controller.deleteTask)
 
-module.exports = router
+export default router
