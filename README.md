@@ -8,8 +8,6 @@ The task manager is the quintessential archetype for the genre.
 
 ## Todo
 
-- Implement TypeScript modules
-- Implement typing across app
 - Implement further unit tests to 80% coverage
 - Add due date attribute to tasks
 - Add filter (by date, incl today) and sort to due date attribute

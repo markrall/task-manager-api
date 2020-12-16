@@ -7,10 +7,22 @@
     "start:local": "env-cmd -e development node ./build/bin/www",
     "build": "tsc --project ./",
     "dev": "env-cmd -e development nodemon ./bin/www",
-    "test": "env-cmd -e test jest --watch --detectOpenHandles --runInBand"
+    "test": "env-cmd -e test jest --watchAll --runInBand --coverage --detectOpenHandles"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 80,
+        "lines": 80,
+        "statements": 80
+
+      }
+    }
   },
   "dependencies": {
     "@sendgrid/mail": "^7.4.0",
