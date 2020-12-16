@@ -3,7 +3,7 @@ const SG_API_KEY = process.env.SG
 
 sgMail.setApiKey(SG_API_KEY)
 
-const sendWelcomeEmail = async (email, name) => {
+const sendWelcomeEmail = async (email: string, name: string) => {
   const msg = {
     to: email,
     from: 'sendgrid@codeinfront.com',
@@ -23,7 +23,7 @@ const sendWelcomeEmail = async (email, name) => {
   await sgMail.send(msg)
 }
 
-const sendCancellationEmail = async (email, name) => {
+const sendCancellationEmail = async (email: string, name: string) => {
   const msg = {
     to: email,
     from: 'sendgrid@codeinfront.com',
@@ -40,7 +40,7 @@ const sendCancellationEmail = async (email, name) => {
   await sgMail.send(msg)
 }
 
-module.exports = {
+export {
   sendWelcomeEmail,
   sendCancellationEmail,
 }

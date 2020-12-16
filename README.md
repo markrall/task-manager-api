@@ -8,8 +8,9 @@ The task manager is the quintessential archetype for the genre.
 
 ## Todo
 
-- Implement TypeScript
-- Implement unit test suite
+- Implement TypeScript modules
+- Implement typing across app
+- Implement further unit tests to 80% coverage
 - Add due date attribute to tasks
 - Add filter (by date, incl today) and sort to due date attribute
 - Add priority attribute to tasks
@@ -18,4 +19,5 @@ The task manager is the quintessential archetype for the genre.
 - Add filter and sort to tags attribute
 - Add media uploads for tasks
 - Add GET /users/me/avatar route ???
-- Review [sharp](https://github.com/lovell/sharp/tree/master/docs) docs to find optimisation opportunities
+- Review [sharp](https://github.com/lovell/sharp/tree/master/docs) docs to find image optimisation opportunities
+- FIXME: all `// @ts-ignore` statements

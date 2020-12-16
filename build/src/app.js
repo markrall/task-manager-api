@@ -1,16 +1,13 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+const tslib_1 = require("tslib");
+const express_1 = tslib_1.__importDefault(require("express"));
 require("./db/mongoose");
-const body_parser_1 = __importDefault(require("body-parser"));
+const body_parser_1 = tslib_1.__importDefault(require("body-parser"));
 // const cors = require('cors')
 // const logger = require('morgan')
 // const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/users');
-const tasksRouter = require('./routes/tasks');
+const routes_1 = require("./routes/");
 const app = express_1.default();
 // const corsOptions = {
 //   origin: 'http://localhost:8081',
@@ -20,7 +17,7 @@ const app = express_1.default();
 app.use(body_parser_1.default.json({ strict: true }));
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 // app.use(indexRouter)
-app.use(usersRouter);
-app.use(tasksRouter);
+app.use(routes_1.usersRouter);
+app.use(routes_1.tasksRouter);
 module.exports = app;
 //# sourceMappingURL=app.js.map

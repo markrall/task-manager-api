@@ -1,9 +1,7 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
+const tslib_1 = require("tslib");
+const express_1 = tslib_1.__importDefault(require("express"));
 const controller = require('../controllers/user.controller');
 const auth = require('../middleware/auth');
 const router = express_1.default.Router();
@@ -31,5 +29,5 @@ router.post('/users/me/avatar', auth, upload.single('avatar'), controller.upload
 });
 router.get('/users/:id/avatar', controller.findUserAvatar);
 router.delete('/users/me/avatar', auth, controller.deleteAvatar);
-module.exports = router;
+exports.default = router;
 //# sourceMappingURL=users.js.map

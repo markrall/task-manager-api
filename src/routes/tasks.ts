@@ -1,7 +1,8 @@
-const express = require('express')
+
+import express from 'express'
 const controller = require('../controllers/task.controller')
 const auth = require('../middleware/auth')
-const router = new express.Router()
+const router = express.Router()
 
 router.post('/tasks', auth, controller.createTask)
 

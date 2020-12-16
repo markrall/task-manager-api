@@ -1,8 +1,9 @@
+// @ts-ignore
+import sharp from 'sharp'
+import { sendWelcomeEmail, sendCancellationEmail } from '../emails/account'
 const User = require('../models/user.model')
-const sharp = require('sharp')
-const { sendWelcomeEmail, sendCancellationEmail } = require('../emails/account')
 
-exports.createUser = async (req, res) => {
+exports.createUser = async (req: any, res: any) => {
   try {
     const user = new User(req.body)
     sendWelcomeEmail(user.email, user.name)
@@ -14,7 +15,7 @@ exports.createUser = async (req, res) => {
   }
 }
 
-exports.loginUser = async (req, res) => {
+exports.loginUser = async (req: any, res: any) => {
   try {
     const { email, password } = req.body
     const user = await User.findByCredentials(email, password)
@@ -25,9 +26,9 @@ exports.loginUser = async (req, res) => {
   }
 }
 
-exports.logoutUser = async (req, res) => {
+exports.logoutUser = async (req: any, res: any) => {
   try {
-    req.user.tokens = req.user.tokens.filter(token => {
+    req.user.tokens = req.user.tokens.filter((token: { token: string }) => {
       return token.token !== req.token
     })
     await req.user.save()
@@ -37,7 +38,7 @@ exports.logoutUser = async (req, res) => {
   }
 }
 
-exports.logoutAllUsers = async (req, res) => {
+exports.logoutAllUsers = async (req: any, res: any) => {
   try {
     req.user.tokens = []
     await req.user.save()
@@ -47,11 +48,11 @@ exports.logoutAllUsers = async (req, res) => {
   }
 }
 
-exports.findUser = async (req, res) => {
+exports.findUser = async (req: any, res: any) => {
   res.send(req.user)
 }
 
-exports.updateUser = async (req, res) => {
+exports.updateUser = async (req: any, res: any) => {
   const updates = Object.keys(req.body)
   const updatable = ['name', 'email', 'password']
   const isValidUpdate = updates.every(update => updatable.includes(update))
@@ -68,7 +69,7 @@ exports.updateUser = async (req, res) => {
   }
 }
 
-exports.deleteUser = async (req, res) => {
+exports.deleteUser = async (req: any, res: any) => {
   try {
     sendCancellationEmail(req.user.email, req.user.name)
     await req.user.remove()
@@ -78,7 +79,7 @@ exports.deleteUser = async (req, res) => {
   }
 }
 
-exports.uploadAvatar = async (req, res) => {
+exports.uploadAvatar = async (req: any, res: any) => {
   const buffer = await sharp(req.file.buffer)
     .resize({ width: 250, height: 250 })
     .png()
@@ -88,7 +89,7 @@ exports.uploadAvatar = async (req, res) => {
   res.send()
 }
 
-exports.findUserAvatar = async (req, res) => {
+exports.findUserAvatar = async (req: any, res: any) => {
   try {
     const user = await User.findById(req.params.id)
 
@@ -100,7 +101,7 @@ exports.findUserAvatar = async (req, res) => {
   }
 }
 
-exports.deleteAvatar = async (req, res) => {
+exports.deleteAvatar = async (req: any, res: any) => {
   try {
     req.user.avatar = undefined
     await req.user.save()

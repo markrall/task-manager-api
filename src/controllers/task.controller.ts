@@ -1,6 +1,6 @@
 const Task = require('../models/task.model')
 
-exports.createTask = async (req, res) => {
+exports.createTask = async (req: any, res: any) => {
   const task = new Task({
     ...req.body,
     owner: req.user._id,
@@ -17,16 +17,18 @@ exports.createTask = async (req, res) => {
 // GET /tasks?completed=true | false
 // GET /tasks?limit=10&skip=n+10
 // GET /tasks?sort=[field1]:[ASC|DESC]&[field2]:[ASC|DESC]
-exports.findTasks = async (req, res) => {
+exports.findTasks = async (req: any, res: any) => {
   const match = {}
   const sort = {}
 
+  // @ts-ignore
   if (req.query.completed) match.completed = req.query.completed === 'true'
 
   if (req.query.sortBy) {
     const segments = req.query.sortBy.split('_')
-    segments.forEach(segment => {
+    segments.forEach((segment: string) => {
       const parts = segment.split(':')
+      // @ts-ignore
       sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
     })
   }
@@ -49,7 +51,7 @@ exports.findTasks = async (req, res) => {
   }
 }
 
-exports.findTask = async (req, res) => {
+exports.findTask = async (req: any, res: any) => {
   const _id = req.params.id
   try {
     const task = await Task.findOne({
@@ -63,7 +65,7 @@ exports.findTask = async (req, res) => {
   }
 }
 
-exports.updateTask = async (req, res) => {
+exports.updateTask = async (req: any, res: any) => {
   const updates = Object.keys(req.body)
   const updatable = ['description', 'completed']
   const isValidUpdate = updates.every(update => updatable.includes(update))
@@ -87,7 +89,7 @@ exports.updateTask = async (req, res) => {
   }
 }
 
-exports.deleteTask = async (req, res) => {
+exports.deleteTask = async (req: any, res: any) => {
   try {
     const _id = req.params.id
     const task = await Task.findOneAndDelete({

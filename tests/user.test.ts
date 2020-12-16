@@ -1,7 +1,7 @@
-const request = require('supertest')
-const app = require('../src/app')
-const User = require('../src/models/user.model')
-const { u1ID, u1, setUpDB } = require('./fixtures/db')
+import request from 'supertest'
+import app from '../src/app'
+import User from '../src/models/user.model'
+import { u1ID, u1, setUpDB } from './fixtures/db'
 
 // Additional User Test Ideas
 //

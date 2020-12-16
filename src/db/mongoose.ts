@@ -1,7 +1,7 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 mongoose
-  .connect(process.env.MDB, {
+  .connect(<string>process.env.MDB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -10,7 +10,7 @@ mongoose
   .then(() => {
     console.log('Database connected')
   })
-  .catch(err => {
+  .catch((err: any) => {
     console.log('Databse connection error', err)
     process.exit()
   })

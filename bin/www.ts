@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-var server = require('../src/app.ts')
+var server = require('../src/app')
 var debug = require('debug')('backend:server')
 var http = require('http')
 
